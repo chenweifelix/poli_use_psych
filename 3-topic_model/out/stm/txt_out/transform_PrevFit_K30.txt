@@ -1,0 +1,267 @@
+[1] "Fitting PrevFit with K=30"
+Beginning Spectral Initialization 
+	 Calculating the gram matrix...
+	 Using only 10000 most frequent terms during initialization...
+	 Finding anchor words...
+ 	..............................
+	 Recovering initialization...
+ 	....................................................................................................
+Initialization complete.
+....................................................................................................
+Completed E-Step (28 seconds). 
+Completed M-Step. 
+Completing Iteration 1 (approx. per word bound = -7.281) 
+....................................................................................................
+Completed E-Step (29 seconds). 
+Completed M-Step. 
+Completing Iteration 2 (approx. per word bound = -7.009, relative change = 3.726e-02) 
+....................................................................................................
+Completed E-Step (27 seconds). 
+Completed M-Step. 
+Completing Iteration 3 (approx. per word bound = -6.933, relative change = 1.095e-02) 
+....................................................................................................
+Completed E-Step (25 seconds). 
+Completed M-Step. 
+Completing Iteration 4 (approx. per word bound = -6.900, relative change = 4.732e-03) 
+....................................................................................................
+Completed E-Step (26 seconds). 
+Completed M-Step. 
+Completing Iteration 5 (approx. per word bound = -6.883, relative change = 2.498e-03) 
+Topic 1: research, review, articl, issu, develop 
+ Topic 2: american, veteran, seek, militari, mental 
+ Topic 3: practic, theori, develop, research, process 
+ Topic 4: model, use, effect, data, estim 
+ Topic 5: children, parent, child, famili, mother 
+ Topic 6: activ, physic, increas, weight, bodi 
+ Topic 7: scale, measur, score, valid, assess 
+ Topic 8: drive, use, experi, driver, visual 
+ Topic 9: treatment, use, drug, substanc, alcohol 
+ Topic 10: work, job, perform, organiz, studi 
+ Topic 11: sexual, women, victim, men, violenc 
+ Topic 12: abus, age, risk, associ, childhood 
+ Topic 13: cognit, function, brain, process, asd 
+ Topic 14: suicid, risk, behavior, attempt, prevent 
+ Topic 15: adolesc, relationship, famili, associ, relat 
+ Topic 16: peopl, studi, experi, attitud, group 
+ Topic 17: stress, event, measur, life, symptom 
+ Topic 18: social, behavior, person, studi, emot 
+ Topic 19: offend, gambl, problem, sexual, risk 
+ Topic 20: school, children, student, teacher, peer 
+ Topic 21: read, languag, learn, children, student 
+ Topic 22: train, autism, children, behavior, asd 
+ Topic 23: task, perform, group, control, memori 
+ Topic 24: treatment, depress, disord, patient, symptom 
+ Topic 25: patient, hiv, medic, care, use 
+ Topic 26: intervent, program, health, servic, effect 
+ Topic 27: use, smoke, alcohol, drink, adolesc 
+ Topic 28: rate, male, femal, subject, prefer 
+ Topic 29: work, worker, pain, use, studi 
+ Topic 30: identif, wit, use, studi, suspect 
+....................................................................................................
+Completed E-Step (25 seconds). 
+Completed M-Step. 
+Completing Iteration 6 (approx. per word bound = -6.872, relative change = 1.478e-03) 
+....................................................................................................
+Completed E-Step (24 seconds). 
+Completed M-Step. 
+Completing Iteration 7 (approx. per word bound = -6.866, relative change = 9.300e-04) 
+....................................................................................................
+Completed E-Step (24 seconds). 
+Completed M-Step. 
+Completing Iteration 8 (approx. per word bound = -6.862, relative change = 6.197e-04) 
+....................................................................................................
+Completed E-Step (24 seconds). 
+Completed M-Step. 
+Completing Iteration 9 (approx. per word bound = -6.859, relative change = 4.421e-04) 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 10 (approx. per word bound = -6.856, relative change = 3.312e-04) 
+Topic 1: research, review, articl, literatur, issu 
+ Topic 2: mental, american, health, veteran, seek 
+ Topic 3: practic, theori, develop, process, model 
+ Topic 4: model, effect, use, data, studi 
+ Topic 5: children, parent, child, famili, mother 
+ Topic 6: activ, physic, weight, increas, bodi 
+ Topic 7: measur, score, scale, valid, assess 
+ Topic 8: experi, inform, use, drive, task 
+ Topic 9: treatment, use, drug, substanc, abus 
+ Topic 10: work, job, perform, organiz, employ 
+ Topic 11: sexual, women, men, victim, violenc 
+ Topic 12: age, disord, abus, associ, year 
+ Topic 13: function, cognit, brain, process, develop 
+ Topic 14: risk, suicid, behavior, factor, attempt 
+ Topic 15: adolesc, relationship, famili, youth, associ 
+ Topic 16: peopl, attitud, group, experi, studi 
+ Topic 17: stress, ptsd, symptom, event, psycholog 
+ Topic 18: social, behavior, emot, aggress, support 
+ Topic 19: offend, gambl, crimin, juvenil, recidiv 
+ Topic 20: school, student, teacher, academ, peer 
+ Topic 21: languag, read, learn, instruct, children 
+ Topic 22: autism, train, asd, children, behavior 
+ Topic 23: task, perform, memori, group, cognit 
+ Topic 24: treatment, depress, patient, disord, symptom 
+ Topic 25: care, patient, medic, health, hiv 
+ Topic 26: intervent, program, effect, health, servic 
+ Topic 27: alcohol, use, smoke, drink, among 
+ Topic 28: subject, male, rate, femal, differ 
+ Topic 29: pain, work, worker, injuri, use 
+ Topic 30: identif, interview, question, use, wit 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 11 (approx. per word bound = -6.855, relative change = 2.563e-04) 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 12 (approx. per word bound = -6.853, relative change = 2.048e-04) 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 13 (approx. per word bound = -6.852, relative change = 1.630e-04) 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 14 (approx. per word bound = -6.851, relative change = 1.272e-04) 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 15 (approx. per word bound = -6.851, relative change = 9.816e-05) 
+Topic 1: research, review, articl, literatur, issu 
+ Topic 2: health, mental, american, servic, veteran 
+ Topic 3: develop, process, practic, theori, model 
+ Topic 4: model, effect, use, data, studi 
+ Topic 5: children, parent, child, famili, mother 
+ Topic 6: activ, physic, weight, increas, bodi 
+ Topic 7: measur, score, scale, assess, valid 
+ Topic 8: experi, use, inform, drive, task 
+ Topic 9: treatment, use, drug, substanc, abus 
+ Topic 10: work, job, perform, employ, organiz 
+ Topic 11: sexual, women, men, victim, violenc 
+ Topic 12: disord, age, abus, year, associ 
+ Topic 13: brain, function, develop, process, cognit 
+ Topic 14: risk, suicid, behavior, factor, youth 
+ Topic 15: adolesc, relationship, famili, youth, associ 
+ Topic 16: peopl, attitud, group, experi, belief 
+ Topic 17: stress, ptsd, symptom, exposur, psycholog 
+ Topic 18: social, behavior, emot, support, aggress 
+ Topic 19: offend, gambl, crimin, juvenil, recidiv 
+ Topic 20: school, student, teacher, academ, educ 
+ Topic 21: languag, read, learn, children, skill 
+ Topic 22: autism, asd, train, children, behavior 
+ Topic 23: cognit, task, perform, memori, control 
+ Topic 24: treatment, depress, patient, disord, therapi 
+ Topic 25: care, health, medic, patient, hiv 
+ Topic 26: intervent, program, effect, group, improv 
+ Topic 27: alcohol, use, smoke, drink, among 
+ Topic 28: subject, rate, male, femal, group 
+ Topic 29: pain, injuri, work, worker, use 
+ Topic 30: interview, question, inform, identif, case 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 16 (approx. per word bound = -6.850, relative change = 7.747e-05) 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 17 (approx. per word bound = -6.850, relative change = 5.972e-05) 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 18 (approx. per word bound = -6.849, relative change = 5.060e-05) 
+....................................................................................................
+Completed E-Step (23 seconds). 
+Completed M-Step. 
+Completing Iteration 19 (approx. per word bound = -6.849, relative change = 4.503e-05) 
+....................................................................................................
+Completed E-Step (22 seconds). 
+Completed M-Step. 
+Completing Iteration 20 (approx. per word bound = -6.849, relative change = 3.892e-05) 
+Topic 1: research, review, articl, literatur, issu 
+ Topic 2: health, mental, american, servic, veteran 
+ Topic 3: develop, process, model, theori, practic 
+ Topic 4: model, effect, use, data, studi 
+ Topic 5: children, parent, child, famili, mother 
+ Topic 6: activ, physic, weight, increas, bodi 
+ Topic 7: measur, score, scale, assess, valid 
+ Topic 8: experi, use, task, drive, visual 
+ Topic 9: treatment, use, drug, substanc, abus 
+ Topic 10: work, job, perform, employ, organiz 
+ Topic 11: sexual, women, men, victim, violenc 
+ Topic 12: disord, age, year, abus, associ 
+ Topic 13: brain, function, develop, may, genet 
+ Topic 14: risk, factor, suicid, behavior, youth 
+ Topic 15: adolesc, relationship, famili, associ, youth 
+ Topic 16: attitud, peopl, belief, experi, group 
+ Topic 17: stress, ptsd, symptom, exposur, psycholog 
+ Topic 18: social, behavior, emot, support, relat 
+ Topic 19: offend, gambl, crimin, juvenil, recidiv 
+ Topic 20: school, student, teacher, educ, academ 
+ Topic 21: languag, learn, read, skill, children 
+ Topic 22: autism, asd, children, behavior, train 
+ Topic 23: cognit, task, perform, memori, control 
+ Topic 24: treatment, depress, patient, therapi, disord 
+ Topic 25: care, health, medic, hiv, servic 
+ Topic 26: intervent, program, effect, group, particip 
+ Topic 27: alcohol, use, smoke, drink, among 
+ Topic 28: subject, group, rate, male, femal 
+ Topic 29: pain, injuri, work, use, worker 
+ Topic 30: inform, interview, question, case, identif 
+....................................................................................................
+Completed E-Step (22 seconds). 
+Completed M-Step. 
+Completing Iteration 21 (approx. per word bound = -6.849, relative change = 3.206e-05) 
+....................................................................................................
+Completed E-Step (22 seconds). 
+Completed M-Step. 
+Completing Iteration 22 (approx. per word bound = -6.848, relative change = 2.562e-05) 
+....................................................................................................
+Completed E-Step (21 seconds). 
+Completed M-Step. 
+Completing Iteration 23 (approx. per word bound = -6.848, relative change = 1.887e-05) 
+....................................................................................................
+Completed E-Step (21 seconds). 
+Completed M-Step. 
+Completing Iteration 24 (approx. per word bound = -6.848, relative change = 1.486e-05) 
+....................................................................................................
+Completed E-Step (21 seconds). 
+Completed M-Step. 
+Completing Iteration 25 (approx. per word bound = -6.848, relative change = 1.174e-05) 
+Topic 1: research, review, articl, literatur, issu 
+ Topic 2: health, mental, american, servic, cultur 
+ Topic 3: develop, process, model, theori, practic 
+ Topic 4: model, use, data, effect, studi 
+ Topic 5: children, parent, child, famili, mother 
+ Topic 6: activ, physic, weight, increas, bodi 
+ Topic 7: measur, score, scale, assess, valid 
+ Topic 8: experi, task, use, drive, visual 
+ Topic 9: treatment, use, drug, substanc, abus 
+ Topic 10: work, job, perform, employ, relationship 
+ Topic 11: sexual, women, victim, men, violenc 
+ Topic 12: disord, age, year, associ, childhood 
+ Topic 13: brain, function, genet, may, develop 
+ Topic 14: risk, youth, factor, suicid, behavior 
+ Topic 15: adolesc, relationship, famili, associ, studi 
+ Topic 16: attitud, peopl, belief, experi, studi 
+ Topic 17: stress, ptsd, symptom, exposur, depress 
+ Topic 18: social, behavior, emot, support, relat 
+ Topic 19: offend, gambl, crimin, juvenil, recidiv 
+ Topic 20: school, student, teacher, educ, academ 
+ Topic 21: languag, learn, read, skill, children 
+ Topic 22: autism, asd, children, behavior, spectrum 
+ Topic 23: cognit, task, perform, memori, function 
+ Topic 24: treatment, depress, patient, therapi, disord 
+ Topic 25: care, servic, health, medic, hiv 
+ Topic 26: intervent, program, effect, group, particip 
+ Topic 27: alcohol, use, smoke, drink, among 
+ Topic 28: group, subject, rate, differ, signific 
+ Topic 29: pain, injuri, safeti, work, use 
+ Topic 30: inform, interview, question, case, report 
+....................................................................................................
+Completed E-Step (21 seconds). 
+Completed M-Step. 
+Completing Iteration 26 (approx. per word bound = -6.848, relative change = 1.043e-05) 
+....................................................................................................
+Completed E-Step (21 seconds). 
+Completed M-Step. 
+Model Converged 
