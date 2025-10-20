@@ -10,7 +10,7 @@ df_papers_abs_info = read_csv("3-topic_model/data/cited_paper_info.csv")
 # Read in precessed text -----
 stm_processed = read_rds("3-topic_model/data/processed_text_for_stm.rds")
 
-# Model fit in Quest ------- 
+# Model fit object ------- 
 PrevFit_k30 = read_rds("3-topic_model/out/stm/transform_PrevFit_K30.rds")
 # Avg Proportion of each 
 mat_prop = PrevFit_k30$theta
