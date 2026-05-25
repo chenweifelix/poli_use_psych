@@ -3,6 +3,9 @@ library(tidyverse)
 # Read in data ------ 
 df_poli_and_papers_fields = read_csv("1-trend/data/df_poli_and_papers_fields.csv") # NA in Field_name means the cited paper is from a non-social science field 
 
+n_poli = df_poli_and_papers_fields %>% distinct(policy_document_id) %>% nrow() # 175987
+cat("Number of distinct policy documents: ", n_poli, "\n") 
+
 # Count policy as citing a field, regardless of the number of paper the policy cites ----- 
 # Trend across years (2000-2022) ---- 
 df_n_poli_year = 
@@ -92,7 +95,7 @@ plt_all_fields_percent_m1_top5 =
   ) + 
   guides(colour = guide_colourbar(label = T, draw.ulim = T, draw.llim = T)) +
   coord_flip()
-plt_all_fields_percent_m1_top5
+plt_all_fields_percent_m1_top5 
 ggsave(plt_all_fields_percent_m1_top5, filename = "1-trend/out/plt_all_fields_percent_m1_top5.pdf", 
        width = 16, height = 8)
 
@@ -103,7 +106,7 @@ df_rank_across_years =
   arrange(published_on_yr, desc(percentage)) %>% 
   mutate(ranking = row_number()) 
 
-# Ranked 2 in 19 years, and 3 in 2 years 
+# Ranked 2nd in 22 years, and 3rd in 1 years 
 df_rank_across_years %>% 
   filter(Field_name == "Psychology") %>% pull(ranking) %>% table
 
@@ -122,7 +125,7 @@ df_all_mod_of_time =
   filter(Field_name != "Other Unlabeled Fields") %>%
   mutate(year = as.numeric(year), percentage = percentage * 100) %>% 
   group_by(Field_name) %>% 
-  do(tidy(lm(percentage ~ year, .))) %>% 
+  do(broom::tidy(lm(percentage ~ year, .))) %>% 
   filter(term != "(Intercept)") %>% 
   ungroup() %>% 
   mutate(p_value_adj = stats::p.adjust(p.value, method = "bonferroni") %>% round(4)) %>% 
@@ -141,16 +144,6 @@ func_test_coef = function(b1, se1, b2, se2){
 func_test_coef(df_all_mod_of_time[[which(df_all_mod_of_time$Field_name == "Psychology"), "estimate"]], 
                df_all_mod_of_time[[which(df_all_mod_of_time$Field_name == "Psychology"), "std.error"]], 
                df_all_mod_of_time[[2, "estimate"]], 
-               df_all_mod_of_time[[2, "std.error"]]) # Not sig diff
-# Compare with the third largest trend (Economics)
-func_test_coef(df_all_mod_of_time[[which(df_all_mod_of_time$Field_name == "Psychology"), "estimate"]], 
-               df_all_mod_of_time[[which(df_all_mod_of_time$Field_name == "Psychology"), "std.error"]], 
-               df_all_mod_of_time[[3, "estimate"]], 
-               df_all_mod_of_time[[3, "std.error"]]) # Sig diff
-# Compare with the fourth largest trend (Education)
-func_test_coef(df_all_mod_of_time[[which(df_all_mod_of_time$Field_name == "Psychology"), "estimate"]], 
-               df_all_mod_of_time[[which(df_all_mod_of_time$Field_name == "Psychology"), "std.error"]], 
-               df_all_mod_of_time[[4, "estimate"]], 
-               df_all_mod_of_time[[4, "std.error"]]) # Sig diff
+               df_all_mod_of_time[[2, "std.error"]]) # Sig diff
 
 # Other fields will be sig diff from psychology (smaller trend)

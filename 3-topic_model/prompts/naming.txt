@@ -1,0 +1,19 @@
+You are a well-read psychology researcher.
+
+Below are short summaries of representative abstracts from one topic model topic.
+
+Your task is to propose:
+1. a short topic name (3 to 4 words), and
+2. a one-sentence description of the shared theme.
+
+Rules:
+- Base your answer only on the summaries provided.
+- Do not invent details not supported by the summaries.
+- The topic name should be specific enough to be informative, but broad enough to cover the set.
+- Avoid vague labels like "psychology" or "behavior".
+- Output only this format and nothing else:
+{
+    "topic_name": "[your proposed topic name]",
+    "topic_description": "[your one-sentence description]"
+}
+ 

@@ -5,13 +5,14 @@ library(stm)
 library(tidyverse)
 library(ggpubr)
 # Read in original data ----- 
-df_papers_abs_info = read_csv("3-topic_model/data/cited_paper_info.csv")
+df_papers_abs_info = arrow::read_feather("3-topic_model/data/cited_paper_info.feather")
 
 # Read in precessed text -----
-stm_processed = read_rds("3-topic_model/data/processed_text_for_stm.rds")
+out = read_rds("3-topic_model/data/processed_text_lower_threashold.rds")
 
-# Model fit object ------- 
+# Model fit in Quest ------- 
 PrevFit_k30 = read_rds("3-topic_model/out/stm/transform_PrevFit_K30.rds")
+PrevFit_k30$settings$covariates$formula
 # Avg Proportion of each 
 mat_prop = PrevFit_k30$theta
 
@@ -19,25 +20,29 @@ obj_topic_words = labelTopics(PrevFit_k30)
 
 # This only needs to be run once to save time
 # Check if file exists
+mod_out_filepath = "3-topic_model/out/stm/mod_eff_k30.rds"
 set.seed(1234)
-if (!file.exists("3-topic_model/out/stm/mod_eff_k30.rds")) {
+if (!file.exists(mod_out_filepath)) {
     prep_mod = estimateEffect(1:30 ~ 
-                            cited_poli_bin + z_log_cited_aca_num +
+                            cited_poli_bin + z_log_cited_aca_num + 
                             Field_Name.applied+Field_Name.biological+
                             Field_Name.clinical+Field_Name.developmental+Field_Name.educational+
                             Field_Name.experimental+Field_Name.mathematical+Field_Name.multidisciplinary+
                             Field_Name.other+Field_Name.social, 
                             PrevFit_k30, 
-                            meta = stm_processed$meta, 
+                            meta = out$meta, 
                             uncertainty = "Global")
-    saveRDS(prep_mod, "3-topic_model/out/stm/mod_eff_k30.rds")
+    saveRDS(prep_mod, mod_out_filepath)
 } else {
-    prep_mod = read_rds("3-topic_model/out/stm/mod_eff_k30.rds")
+    prep_mod = read_rds(mod_out_filepath)
 }
 
-vec_sum_tab = summary(prep_mod) 
+vec_sum_tab = summary(prep_mod)
 
 mat_result = matrix(nrow = 3, ncol = 3); colnames(mat_result) = c("aca_pos", "aca_neg", "aca_ns");rownames(mat_result) = c("poli_pos", "poli_neg", "poli_ns")
+vec_pos_pos = c(); vec_pos_neg = c(); vec_pos_ns = c(); 
+vec_neg_pos = c(); vec_neg_neg = c(); vec_neg_ns = c();
+vec_ns_pos = c(); vec_ns_neg = c(); vec_ns_ns = c();
 vec_poli_eff_all = c(); vec_poli_se_all = c() 
 vec_aca_eff_all = c(); vec_aca_se_all = c()
 vec_topic_and_words_all = c()
@@ -69,8 +74,36 @@ for (i_topic in vec_sum_tab$topics){
     prop_top = (mat_prop[, i_topic] %>% mean() %>% round(4)) * 100 
     vec_temp = str_c("Topic ", i_topic, " (", prop_top, "%)", ": " ,str_c(vec_keywords, collapse = ", "), "\n")
     vec_topic_and_words_all = c(vec_topic_and_words_all, vec_temp)
-}
 
+    if (poli_sig < .05 & aca_sig < .05) { # If significant in both
+        if (poli_eff >=0 & aca_eff >= 0) { 
+            vec_pos_pos = str_c(vec_pos_pos, vec_temp)
+        } else if (poli_eff >=0 & aca_eff < 0) {
+            vec_pos_neg = str_c(vec_pos_neg, vec_temp)
+        } else if(poli_eff < 0 & aca_eff < 0){
+            vec_neg_neg = str_c(vec_neg_neg, vec_temp)
+        } else if (poli_eff < 0 & aca_eff >= 0) {
+            vec_neg_pos = str_c(vec_neg_pos, vec_temp)
+        } 
+    } else if (poli_sig < .05 & aca_sig >= .05) {
+      if (poli_eff >=0) {
+          vec_pos_ns = str_c(vec_pos_ns, vec_temp)
+          } else {
+          vec_neg_ns = str_c(vec_neg_ns, vec_temp)}
+    } else if (poli_sig >= .05 & aca_sig < .05) {
+        if (aca_eff >= 0) {
+            vec_ns_pos = str_c(vec_ns_pos, vec_temp)
+        } else {
+            vec_ns_neg = str_c(vec_ns_neg, vec_temp)}
+    } else {
+        vec_ns_ns = str_c(vec_ns_ns, vec_temp)
+    }
+}
+for (vec in c("vec_pos_pos", "vec_pos_neg", "vec_pos_ns", "vec_neg_pos", "vec_neg_neg", "vec_neg_ns", "vec_ns_pos", "vec_ns_neg", "vec_ns_ns")){
+    if (is.null(get(vec))) {
+        assign(vec, c(" "))
+    }
+}
 
 # All topic coeficients plot -----
 df_eff_plt = 
@@ -92,15 +125,44 @@ df_eff_plt_long =
     mutate(topic = rep(vec_topic_and_words_all %>% str_trim(), 2)) %>% 
     separate(topic, into = c("topic", "top_words"), sep = ": ") 
 
-# Use Lamma to name the topics  
-## Load the pre-computed topic labels (see the script and prompt in `llm_topic_naming_based_on_abs.R` for details)
-vec_topic_names = read_rds("3-topic_model/out/llm_vec_topic_term.rds")
+# Get represenative abstracts for each topic
+get_high_theta_docs = function(out, theta_mat, topic, threshold = 0.5, top_n = 50) {
+  theta_topic = theta_mat[, topic]
+  
+  idx = which(theta_topic > threshold)
+  
+  if (length(idx) == 0) {
+    return(character(0))
+  }
+  
+  idx = idx[order(theta_topic[idx], decreasing = TRUE)]
+  idx = head(idx, top_n)
+  
+  paper_vec = out$meta[idx, "str_title_abs"]
+  return(paper_vec)
+}
+
+list_abs = list()
+for (i in 1:30){
+    paper_vec = get_high_theta_docs(out, mat_prop, i, threshold = 0.5, top_n = 50)
+    topic_label = str_c("Topic ", i)
+    if (length(paper_vec) > 50){ # Limit to the top 50 abstracts 
+        paper_vec = head(paper_vec, 50)
+    }
+    # paper_vec = paper_vec %>% str_c(collapse = "\n\n---\n\n") 
+    list_abs[[topic_label]] = paper_vec
+}
+
+
+# Use llm to name the topics (done in computing cluster)
+df_topic_name_desc = read_csv("3-topic_model/out/topic_name_desc.csv")
+vec_topic_names = df_topic_name_desc$topic_name
 
 df_eff_plt_long = df_eff_plt_long %>% 
     mutate(topic_name = rep(vec_topic_names, 2)) %>% 
     mutate(topic_name = str_to_title(topic_name) %>% str_remove("\\.$")) %>% 
-    mutate(topic_name = topic_name %>% str_replace_all("And", "and") %>% str_replace("Hiv", "HIV") %>% str_replace("For", "for") %>% str_replace("Adhd", "ADHD") %>% str_replace("Aids", "AIDS")) %>% 
-    mutate(topic_axis = str_replace(topic, "Topic ", "#") %>% str_replace("\\(", ";")) %>% 
+    mutate(topic_name = topic_name %>% str_replace_all("And", "&")) %>% 
+    mutate(topic_axis = str_replace(topic, "Topic ", "#") %>% str_replace(" \\(", "; ")) %>% 
     mutate(topic_axis = str_c("(", topic_axis)) %>% 
     mutate(topic_axis = str_c(topic_name, " ", topic_axis))
 df_eff_plt_policy = df_eff_plt_long %>% filter(type == "Policy") # Use this to set the order
@@ -148,3 +210,27 @@ fig_eff_plot =
 fig_eff_plot
 
 ggsave(fig_eff_plot, filename = "3-topic_model/out/fig/fig_eff_plt.jpeg", width = 35, height = 20, dpi = 500)
+
+# Table for SI -----
+vec_sig_poli = c()
+vec_sig_aca = c()
+for (i in 1:30){
+    tab_temp = vec_sum_tab$tables[i][[1]]
+    poli_sig = tab_temp[2,4]; aca_sig = tab_temp[3,4]
+    vec_sig_poli = c(vec_sig_poli, poli_sig)
+    vec_sig_aca = c(vec_sig_aca, aca_sig)
+}
+vec_sig_all = c(vec_sig_poli, vec_sig_aca) 
+
+eff_tab_SI = 
+    df_eff_plt_long %>% 
+    select(eff, low_ci, high_ci, type, topic_axis, topic) %>% 
+    mutate(sig = vec_sig_all) %>% 
+    mutate(sig_mark = case_when(
+        sig < .001 ~ "***",
+        sig < .01 ~ "**",
+        sig < .05 ~ "*",
+        TRUE ~ "ns"
+    ))  
+
+eff_tab_SI 
